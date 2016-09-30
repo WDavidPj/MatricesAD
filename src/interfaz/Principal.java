@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import clases.Helper;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -77,7 +78,7 @@ public class Principal extends javax.swing.JFrame {
         txtResultado.setEditable(false);
         jPanel4.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 390, -1));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 420, 70));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 420, 70));
 
         tblTablaInicial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,7 +92,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 320, 210));
 
-        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CantNumPares", "NumPares", "Letra C", "DiagonalPrincipal", "Letra H " }));
+        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CantNumPares", "NumPares", "Letra C", "DiagonalPrincipal", "Letra H", "RecorridoUno", "RecorridoDos" }));
         jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 110, 30));
 
         tblTablaResultado.setModel(new javax.swing.table.DefaultTableModel(
@@ -196,7 +197,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdAutomatico1ActionPerformed
 
     private void cmdOperacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacion1ActionPerformed
-        int op, nf, nc , aux , cont = 0;
+        int op, nf, nc, aux, cont = 0;
 
         op = cmbOperaciones.getSelectedIndex();
         nc = tblTablaInicial.getColumnCount();
@@ -204,56 +205,26 @@ public class Principal extends javax.swing.JFrame {
 
         switch (op) {
             case 0:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if(aux % 2 == 0){
-                            cont++;
-                        }
-                    }
-                }
-
-                txtResultado.setText("El numero de elemetos pares es :"+cont);
+                Helper.cantidadPares(tblTablaInicial);
+                txtResultado.setText("El numero de elemetos pares es :" + cont);
                 break;
             case 1:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if(aux % 2 == 0){
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-                }
+                Helper.pares(tblTablaInicial, tblTablaResultado);
                 break;
             case 2:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if(i == 0 || i == nf - 1 || j == 0){
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-                }
+                Helper.letraC(tblTablaInicial, tblTablaResultado);
                 break;
             case 3:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if( i == j){
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-                }
+                Helper.diagonalPrincipal(tblTablaInicial, tblTablaResultado);
                 break;
             case 4:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if( j == 0 || j == nc - 1 || i == (nf-1)/2){
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-                }
+                Helper.letraH(tblTablaInicial, tblTablaResultado);
+                break;
+            case 5:
+                txtResultado.setText(Helper.recorridoUno(tblTablaInicial));
+                break;
+            case 6:
+                txtResultado.setText(Helper.recorridoDos(tblTablaInicial));
                 break;
         }
     }//GEN-LAST:event_cmdOperacion1ActionPerformed
