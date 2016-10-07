@@ -41,7 +41,7 @@ public class Test {
         
         System.out.println(Helper.mostrar(m));
         System.out.println("Recorrido");
-        System.out.println(Helper.recorridoDiagonalSecundariaHaciaAbajo(m , 1, 3));
+        //System.out.println(Helper.recorrido3(m));
     
     }
 }
