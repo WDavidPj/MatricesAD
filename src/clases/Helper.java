@@ -159,8 +159,17 @@ public class Helper {
         return m;
 
     }
+    public static String recorridoHaciaArriba(int[][] m, int j) {
+        int nf = m.length;
+        String aux = "";
+        for (int i = nf - 1; i >= 0; i--) {
+            aux = aux + m[i][j] + ", ";
+        }
+        return aux;
 
-    public static String recorridoHaciaArriba(int[][] m, int j, int in , int fin) {
+    }
+
+    public static String recorridoHaciaArriba(int[][] m, int j, int in, int fin) {
         int nf = m.length;
         String aux = "";
         for (int i = in; i >= fin; i--) {
@@ -177,6 +186,15 @@ public class Helper {
         }
         return aux;
     }
+    public static String recorridoHaciaAbajo(int[][] m, int j, int in, int fin) {
+      
+        String aux = "";
+        for (int i = in; i < fin; i++) {
+            aux = aux + m[i][j] + ", ";
+        }
+        return aux;
+
+    }
 
     public static String recorridoUno(JTable tabla1) {
         int[][] m = pasoDeDatos(tabla1);
@@ -189,14 +207,14 @@ public class Helper {
                 aux = aux + Helper.recorridoHaciaAbajo(m, j);
             }
         }
-        aux = aux.substring(0, aux.length() - 2) + ".";
+        aux = aux.substring(0, aux.length()-2)+".";
         return aux;
     }
 
     public static String recorridoHaciaDerecha(int[][] m, int i) {
         int nc = m[0].length;
         String aux = "";
-        for (int j = 0; j < nc; j++) {
+        for (int j = 0; j <= nc; j++) {
             aux = aux + m[i][j] + " ,";
         }
 
@@ -208,6 +226,62 @@ public class Helper {
         String aux = "";
         for (int j = nc - 1; j >= 0; j--) {
             aux = aux + m[i][j] + " ,";
+        }
+
+        return aux;
+    }
+    public static String recorridoDiagonalPrincipalHaciaAbajo(int[][] m) {
+        int nf = m.length;
+        String aux = "";
+        for (int i = 0; i < nf; i++) {
+            aux = aux + m[i][i] + " ,";
+        }
+
+        return aux;
+    }
+    public static String recorridoDiagonalPrincipalHaciaArriba(int[][] m) {
+        int nf = m.length;
+        String aux = "";
+        for (int i = nf -1; i > 0; i--) {
+            aux = aux + m[i][i] + " ,";
+        }
+
+        return aux;
+    }
+    public static String recorridoDiagonalSecundariaHaciaAbajo(int[][] m) {
+        int nc = m[0].length;
+        int nf = m.length;
+        String aux = "";
+        for (int i = 0; i < nf; i++) {
+            aux = aux + m[i][nc-1-i] + ", ";
+        }
+
+        return aux;
+    }
+    public static String recorridoDiagonalSecundariaHaciaAbajo(int[][] m , int in , int fin) {
+        int nc = m[0].length;
+        int nf = m.length;
+        String aux = "";
+        for (int i = in; i < fin; i++) {
+            aux = aux + m[i][nc-1-i] + ", ";
+        }
+
+        return aux;
+    }
+    public static String recorridoDiagonalPrincipalHaciaArriba(int[][] m , int in , int fin) {
+        int nf = m.length;
+        String aux = "";
+        for (int i = in; i >= fin; i--) {
+            aux = aux + m[i][i] + " ,";
+        }
+
+        return aux;
+    }
+    public static String recorridoDiagonalPrincipalHaciaAbajo(int[][] m , int in ,int fin) {
+        int nf = m.length;
+        String aux = "";
+        for (int i = in; i < fin; i++) {
+            aux = aux + m[i][i] + " ,";
         }
 
         return aux;
@@ -228,7 +302,16 @@ public class Helper {
         return aux;
     }
 
-    private static String recorridoHaciaArriba(int[][] m, int j) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static String mostrar(int[][] m) {
+        String aux = "";
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                aux = aux + m[i][j] + "";
+            }
+            aux = aux + "\n";
+        }
+        return aux;
     }
+    
+
 }
